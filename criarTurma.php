@@ -9,14 +9,15 @@ require_once 'vendor\autoload.php';
 $conection = ConnectionCreator::createConnection();
 
 $pdo = new PdoStudentRepository($conection);
+
 $conection->beginTransaction();
 
 try {
 
-    $students = new Student(10, 'Maria', new DateTimeImmutable('2013-04-02'));
+    $students = new Student(null, 'Maria', new DateTimeImmutable('2013-04-02'));
     $pdo->saveStudent($students);
 
-    $students2 = new Student(11, 'Joana', new DateTimeImmutable('2002-02-09'));
+    $students2 = new Student(null, 'Joana', new DateTimeImmutable('2002-02-09'));
     $pdo->saveStudent($students2);
 
     if($conection->commit()){
